@@ -11,3 +11,6 @@ compile and upload
 
 translated comments for clarity
 
+
+https://picow.pinout.xyz/
+
