@@ -1,0 +1,13 @@
+Add board manager path in Arduino IDE
+https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
+
+install RP2040 (Pico W) support
+install TinyStepper driver
+
+move dated .ino file out of folder (or compilation will fail)
+
+compile and upload
+
+
+translated comments for clarity
+

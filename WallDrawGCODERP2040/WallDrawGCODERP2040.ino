@@ -2,7 +2,7 @@
 #include "gcode_parser.h"
 #include "QHStepper.h"
 
-//change this depending on your button connections
+// change this depending on button connections
 int pen_up_b = 16;
 int pen_down_b = 17;
 int m1_up_b = 20;
@@ -15,17 +15,18 @@ int jog_size = 100;
 
 
 
-//starting X posn needs to be set in two places beloW AND in the IK call in stepper init.
+// starting X posn needs to be set in two places below AND in the IK call in stepper init.
 String gcode_command="";
 float destination[XYZ] = {START_X,START_Y,0};
-//note -- starting position
+// note -- starting position
 float current_position[XYZ] = {START_X,START_Y,0};
 long current_steps_M1 = 0, current_steps_M2 = 0;
 
 
 void setup() {
   Serial.begin(115200);
-//intit the buttons
+
+  // init the buttons
   pinMode(pen_up_b, INPUT_PULLUP); 
   pinMode(pen_down_b, INPUT_PULLUP); 
   pinMode(m1_up_b, INPUT_PULLUP); 

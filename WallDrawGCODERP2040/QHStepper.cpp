@@ -1,10 +1,10 @@
 #include "QHStepper.h"
-#include <TinyStepper_28BYJ_48.h>		//步进电机的库 如果没有该lib请按Ctrl+Shift+I 从 库管理器中搜索 Stepper_28BYJ_48，并安装
+#include <TinyStepper_28BYJ_48.h>		//Stepper motor library. Search for Stepper_28BYJ_48 in the library manager
 
 #include <Servo.h>
 
-TinyStepper_28BYJ_48 m1; //(7,8,9,10);  //M1 L步进电机   in1~4端口对应UNO  7 8 9 10
-TinyStepper_28BYJ_48 m2; //(2,3,5,6);  //M2 R步进电机   in1~4端口对应UNO 2 3 5 6
+TinyStepper_28BYJ_48 m1; //(7,8,9,10);  // M1 L stepper motor in1~4 ports correspond to UNO 7 8 9 10
+TinyStepper_28BYJ_48 m2; //(2,3,5,6);  // M2 R stepper motor in1~4 ports correspond to UNO 2 3 5 6
 
 Servo pen;
 
@@ -26,24 +26,22 @@ void stepper_init(){
   current_steps_M1 = target_steps_m1;
   current_steps_M2 = target_steps_m2;
 
-  m1.connectToPins(6,7,8,9); //M1 L步进电机   in1~4端口对应UNO  7 8 9 10
+  m1.connectToPins(6,7,8,9); //M1 L stepper motor ports 1~4 ports correspond to UNO 7 8 9 10
   m2.connectToPins(0,1,2,3);
   m1.setSpeedInStepsPerSecond(600);
   m1.setAccelerationInStepsPerSecondPerSecond(10000);
   m2.setSpeedInStepsPerSecond(600);
   m2.setAccelerationInStepsPerSecondPerSecond(10000);
 
-  //also init servo
-
-//stuff copied from servo example (yes, I know it's an array of one value)
+  // stuff copied from servo example (yes, I know it's an array of one value)
 
   //also init servo
   pen.attach(14);
   ps=PEN_UP_ANGLE;
   pen.write(ps);
 
-//end stuff copied from servo example
-  //舵机初始化
+  //end stuff copied from servo example
+
 }
 
 void pen_up() {
@@ -62,7 +60,7 @@ void jog_m2(int steps) {
   m2.moveRelativeInSteps(steps);
 }
 
-//直接由当前位置移动到目标位置
+// Move directly from the current position to the target position
 void moveto(float target_X,float target_Y) {
   long target_steps_m1,target_steps_m2;
   IK(target_X, target_Y, target_steps_m1, target_steps_m2);
@@ -150,7 +148,7 @@ void buffer_arc_to_destination( float (&offset)[2], bool clockwise ){
 	if (angular_travel == 0 && current_position[p_axis] == destination[p_axis] && current_position[q_axis] == destination[q_axis])
       angular_travel = RADIANS(360);
 
-    const float mm_of_travel = HYPOT(angular_travel * radius, 0);  //第一个参数是弧长计算
+    const float mm_of_travel = HYPOT(angular_travel * radius, 0);  // The first parameter is the arc length calculation
     if (mm_of_travel < 0.001) return;
     Serial.println(mm_of_travel);
 	
@@ -160,7 +158,7 @@ void buffer_arc_to_destination( float (&offset)[2], bool clockwise ){
 	float raw[XY];
 	const float theta_per_segment = angular_travel / segments,
                 sin_T = theta_per_segment,
-                cos_T = 1 - 0.5 * sq(theta_per_segment); //小角度近似
+                cos_T = 1 - 0.5 * sq(theta_per_segment); // Small angle approximation
 				
 	int8_t arc_recalc_count = N_ARC_CORRECTION;
 	
@@ -179,16 +177,14 @@ void buffer_arc_to_destination( float (&offset)[2], bool clockwise ){
 	  raw[p_axis] = center_P + r_P;
       raw[q_axis] = center_Q + r_Q;
 	  
-	 // moveto(raw[p_axis], raw[q_axis]); //逆解执行函数
+	 // moveto(raw[p_axis], raw[q_axis]); // Inverse solution execution function
 	  
 	  #if 1
 		  Serial.print("G0 X");
 		  Serial.print(raw[p_axis]);
 		  Serial.print("Y");
 		  Serial.println(raw[q_axis]);
-      #endif
-	  
-	  
+    #endif
 	  
 	}
 	
