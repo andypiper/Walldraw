@@ -36,7 +36,7 @@ void setup() {
   pinMode(start_b, INPUT_PULLUP); 
 
   stepper_init();
-  delay(1000);
+  delay(5000);
 
   int debounce_count = 0;
 

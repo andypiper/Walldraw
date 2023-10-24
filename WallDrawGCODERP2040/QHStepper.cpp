@@ -1,10 +1,10 @@
 #include "QHStepper.h"
-#include <TinyStepper_28BYJ_48.h>		//Stepper motor library. Search for Stepper_28BYJ_48 in the library manager
+#include <TinyStepper_28BYJ_48.h>		// Stepper motor library. Search for TinyStepper_28BYJ_48 in the library manager
 
 #include <Servo.h>
 
-TinyStepper_28BYJ_48 m1; //(7,8,9,10);  // M1 L stepper motor in1~4 ports correspond to UNO 7 8 9 10
-TinyStepper_28BYJ_48 m2; //(2,3,5,6);  // M2 R stepper motor in1~4 ports correspond to UNO 2 3 5 6
+TinyStepper_28BYJ_48 m1; // (7,8,9,10);  // M1 L stepper motor in1~4 ports correspond to UNO 7 8 9 10
+TinyStepper_28BYJ_48 m2; // (2,3,5,6);  // M2 R stepper motor in1~4 ports correspond to UNO 2 3 5 6
 
 Servo pen;
 
