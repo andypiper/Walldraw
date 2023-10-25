@@ -20,7 +20,7 @@ code)
 Added reset button for Pico, LED indicator for start mode
 
 Trying to figure out UGS connection issues:
-- connects, issues $I, $$, $G
+- connects, issues ?, $I, $$, $G
 - error log "Couldn't find setting with key: $22"
 
 
