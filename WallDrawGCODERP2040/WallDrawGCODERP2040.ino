@@ -35,8 +35,14 @@ void setup() {
   pinMode(m2_down_b, INPUT_PULLUP); 
   pinMode(start_b, INPUT_PULLUP); 
 
+  // Initialize the LED as an output
+  pinMode(LED_BUILTIN, OUTPUT);
+ 
+  // Set LED off
+  digitalWrite(LED_BUILTIN, LOW);
+
   stepper_init();
-  delay(5000);
+  delay(1000);
 
   int debounce_count = 0;
 
@@ -77,6 +83,8 @@ void setup() {
     }
 
   }
+
+  digitalWrite(LED_BUILTIN, HIGH); // switch on LED to indicate ready (until GCode arrives)
   Serial.println("Grbl 1.1h ['$' for help]");
   delay(1200);
   Serial.println("<Idle|MPos:0.000,0.000,0.000|FS:0,0|Ov:100,100,100>");
@@ -84,6 +92,7 @@ void setup() {
 
 void loop() {
   if( get_command() > 0 ){
+    digitalWrite(LED_BUILTIN, LOW);
     process_parsed_command();
     gcode_command = "";
     Serial.println("ok");
