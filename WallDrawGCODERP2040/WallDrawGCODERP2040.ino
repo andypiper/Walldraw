@@ -35,10 +35,8 @@ void setup() {
   pinMode(m2_down_b, INPUT_PULLUP); 
   pinMode(start_b, INPUT_PULLUP); 
 
-  // Initialize the LED as an output
+  // init onboard LED, set off
   pinMode(LED_BUILTIN, OUTPUT);
- 
-  // Set LED off
   digitalWrite(LED_BUILTIN, LOW);
 
   stepper_init();
@@ -92,7 +90,7 @@ void setup() {
 
 void loop() {
   if( get_command() > 0 ){
-    digitalWrite(LED_BUILTIN, LOW);
+    digitalWrite(LED_BUILTIN, LOW); // switch LED off 
     process_parsed_command();
     gcode_command = "";
     Serial.println("ok");
@@ -105,7 +103,7 @@ byte get_command(){
   static char tmpC = 0;
   while(Serial.available() > 0){
     tmpC = Serial.read();
-    if(tmpC == 0x3f) continue;
+    if(tmpC == 0x3f) continue; // question mark
     if(tmpC == 10 || len > 35 ){  len = 0; return 1;}
     gcode_command += tmpC;
     len++;
