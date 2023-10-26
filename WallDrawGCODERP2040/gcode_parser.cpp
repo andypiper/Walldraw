@@ -2,16 +2,24 @@
 
 void process_parsed_command() {
    gcode_command.toUpperCase();
-   if(gcode_command.indexOf('G') > -1){
-      switch(gcode_command.substring(gcode_command.indexOf('G')+1,gcode_command.indexOf('G')+2) .toInt()){
+   if(gcode_command.indexOf('$') > -1) { // fake grbl command parser
+      if (gcode_command.equals("$$")) {
+        grbl_settings();
+      } else if (gcode_command.equals("$G")) {
+        grbl_parser_state();
+      } else if (gcode_command.equals("$I")) {
+        grbl_build_info();
+      }
+   } else if(gcode_command.indexOf('G') > -1) { // otherwise, handle gcode
+      switch(gcode_command.substring(gcode_command.indexOf('G')+1,gcode_command.indexOf('G')+2) .toInt()) {
         case 0:   gcode_G0_G1();  break;
         case 1:   gcode_G0_G1();  break;
         case 2:   gcode_G2_G3(true); break;
         case 3:   gcode_G2_G3(false); break;
         case 4:   gcode_G4();     break;      
       }
-   }else if(gcode_command.indexOf('M') > -1){
-      switch(gcode_command.substring(gcode_command.indexOf('M')+1,gcode_command.indexOf('M')+2) .toInt()){
+   } else if(gcode_command.indexOf('M') > -1) {
+      switch(gcode_command.substring(gcode_command.indexOf('M')+1,gcode_command.indexOf('M')+2) .toInt()) {
         case 3:   gcode_M3();   break;
         case 4:   gcode_M5();   break;
       }
@@ -38,8 +46,6 @@ void gcode_G0_G1(){
 		else destination[Z_AXIS] = gcode_command.substring(gcode_command.indexOf('Z')+1,gcode_command.length()).toFloat();
 	}
     
-
-//	
 	buffer_line_to_destination();
 	
 }
@@ -106,4 +112,23 @@ void gcode_M3(){
 
 void gcode_M5(){
 	Serial.println("M5"); 
+}
+
+void grbl_settings(){
+  // minimal settings to make UGS happy?
+  //Serial.println("$14=70");
+  Serial.println("$20=0");
+  Serial.println("$21=0");
+  Serial.println("$22=0");
+  Serial.println("$23=0");
+}
+
+void grbl_parser_state(){
+  // attempt to respond with minimal GRBL features "supported"
+  Serial.println("[GC:G0 M3 M5 M9 T0]");
+}
+
+void grbl_build_info(){
+  Serial.println("[VER:1.1h.20231025.PicoW:]");
+  Serial.println("[OPT:]");
 }

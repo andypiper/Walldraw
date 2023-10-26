@@ -24,3 +24,7 @@ Trying to figure out UGS connection issues:
 - error log "Couldn't find setting with key: $22"
 
 
+Useful Fritzing parts:
+- https://github.com/mgesteiro/fritzing-parts/tree/main/28BYJ-48-motor
+- https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html
+
