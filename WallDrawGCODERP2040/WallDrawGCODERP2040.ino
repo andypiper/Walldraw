@@ -7,8 +7,8 @@ int pen_up_b = 16;
 int pen_down_b = 17;
 int m1_up_b = 21;
 int m1_down_b = 20;
-int m2_up_b = 19;
-int m2_down_b = 18;
+int m2_up_b = 18;
+int m2_down_b = 19;
 int start_b = 13;
 
 int jog_size = 100;

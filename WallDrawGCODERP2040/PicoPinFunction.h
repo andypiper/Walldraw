@@ -6,7 +6,6 @@
 #include "hardware/adc.h"
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
-#include "PicoPinFunction.h"
 
 #ifndef PWM_MAX_NUMER
 // you can use up to 65535

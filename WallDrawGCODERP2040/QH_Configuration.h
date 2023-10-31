@@ -11,10 +11,10 @@ start X and Y?
 #define X_SEPARATION  430
 #define X_MAX_POS       ( X_SEPARATION*0.5)   // The maximum value of the x-axis is 0 in the center of the drawing board
 #define X_MIN_POS       (-X_SEPARATION*0.5)   // x-axis minimum value
-#define PEN_UP_ANGLE    110  // Lift the pen
-#define PEN_DOWN_ANGLE  50  // Put pen to paper
-#define INVERT_M1_DIR     -1        
-#define INVERT_M2_DIR     -1
+#define PEN_UP_ANGLE    40  // Lift the pen
+#define PEN_DOWN_ANGLE  120  // Put pen to paper
+#define INVERT_M1_DIR     1 // -1        
+#define INVERT_M2_DIR     -1 // -1
 
 #define Y_MAX_POS         (-200)   // Maximum value of y-axis at the bottom of the drawing board
 #define Y_MIN_POS         (200)
